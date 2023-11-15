@@ -45,6 +45,7 @@ guessBtn.addEventListener("click", function () {
       "Are you sure that your number is between 0-100? 🤔";
   } else if (guessValue == randomNr) {
     guessAnswer.textContent = "Correct answer! YOU WIN!! 🍾🎉";
+    disableGuesses();
   } else {
     guessAnswer.textContent = "Something went wrong. 🛑";
   }
@@ -55,8 +56,10 @@ guessBtn.addEventListener("click", function () {
     previousGuesses.textContent = `You guessed ${guessValue}. You have ${attempts} guesses left.`;
   } else if (guessValue == randomNr && attempts >= 0) {
     previousGuesses.textContent = `Congratulations! You had ${attempts} guesses left.`;
+    disableGuesses();
   } else {
     guessAnswer.textContent = `You've run out of guesses! 🛑 The correct number was ${randomNr}.`;
+    disableGuesses();
   }
 
   //tömma input på tidigare gissning.
@@ -64,3 +67,8 @@ guessBtn.addEventListener("click", function () {
 
   // Spelaren har 5 chanser på sig att gissa rätt tal. om den gissar fler gånger avbryts spelet
 });
+
+function disableGuesses() {
+  guessInput.disabled = true;
+  guessBtn.disabled = true;
+}
